@@ -35,6 +35,13 @@ export function decryptBuffer(envelope: string): Buffer {
   const iv = Buffer.from(ivB64, "base64url");
   const tag = Buffer.from(tagB64, "base64url");
   const ciphertext = Buffer.from(cipherB64, "base64url");
+  if (
+    iv.toString("base64url") !== ivB64 ||
+    tag.toString("base64url") !== tagB64 ||
+    ciphertext.toString("base64url") !== cipherB64
+  ) {
+    throw new Error("Non-canonical base64url envelope rejected.");
+  }
   if (iv.length !== 12 || tag.length !== 16) {
     throw new Error("Invalid AES-256-GCM IV or authentication tag length.");
   }
