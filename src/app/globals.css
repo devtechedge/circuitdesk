@@ -1,0 +1,224 @@
+@import "tailwindcss";
+
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg-canvas: #0b1018;
+  --bg-surface: #121a26;
+  --bg-elevated: #182334;
+  --bg-muted: #1e2c40;
+  --border-subtle: #283850;
+  --border-strong: #394f70;
+  --text-primary: #f1f5f9;
+  --text-secondary: #c0cede;
+  --text-muted: #93a8c4;
+
+  --signal-orange: #fb923c;
+  --signal-orange-hover: #fdba74;
+  --on-signal: #0b1018;
+
+  --signal-cobalt: #60a5fa;
+  --signal-cobalt-hover: #93c5fd;
+  --on-cobalt: #08111f;
+
+  --status-ok-bg: #0c2e22;
+  --status-ok-fg: #6ee7b7;
+  --status-ok-border: #175c43;
+
+  --status-warn-bg: #362208;
+  --status-warn-fg: #fcd34d;
+  --status-warn-border: #784b10;
+
+  --status-danger-bg: #3b1219;
+  --status-danger-fg: #fda4af;
+  --status-danger-border: #7f2331;
+
+  --status-info-bg: #102647;
+  --status-info-fg: #93c5fd;
+  --status-info-border: #224c87;
+
+  --scrollbar-thumb: rgba(147, 168, 196, 0.42);
+  --scrollbar-thumb-active: rgba(192, 206, 222, 0.65);
+  --focus-ring: #fb923c;
+
+  --font-sans: "Plus Jakarta Sans Variable", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "Azeret Mono Variable", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --bg-canvas: #e4e9f0;
+  --bg-surface: #f2f5f9;
+  --bg-elevated: #ffffff;
+  --bg-muted: #d7e0eb;
+  --border-subtle: #bcc8d8;
+  --border-strong: #899db7;
+  --text-primary: #0f172a;
+  --text-secondary: #24324a;
+  --text-muted: #40526d;
+
+  --signal-orange: #c2410c;
+  --signal-orange-hover: #9a3412;
+  --on-signal: #ffffff;
+
+  --signal-cobalt: #1d4ed8;
+  --signal-cobalt-hover: #1e40af;
+  --on-cobalt: #ffffff;
+
+  --status-ok-bg: #dcfce7;
+  --status-ok-fg: #14532d;
+  --status-ok-border: #86efac;
+
+  --status-warn-bg: #fef3c7;
+  --status-warn-fg: #78350f;
+  --status-warn-border: #fcd34d;
+
+  --status-danger-bg: #ffe4e6;
+  --status-danger-fg: #881337;
+  --status-danger-border: #fda4af;
+
+  --status-info-bg: #dbeafe;
+  --status-info-fg: #1e3a8a;
+  --status-info-border: #93c5fd;
+
+  --scrollbar-thumb: rgba(64, 82, 109, 0.38);
+  --scrollbar-thumb-active: rgba(36, 50, 74, 0.62);
+  --focus-ring: #1d4ed8;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+code,
+pre,
+kbd,
+.font-mono,
+.tabular-nums {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Focus visibility (WCAG 2.2 AA) */
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Overlay hover-reveal scrollbars on inner panes only (never html:hover / body:hover) */
+@media (hover: hover) and (pointer: fine) {
+  *:not(html):not(body) {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+  }
+
+  *:not(html):not(body):hover,
+  *:not(html):not(body):focus-within {
+    scrollbar-color: var(--scrollbar-thumb) transparent;
+  }
+
+  *:not(html):not(body)::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  *:not(html):not(body)::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  *:not(html):not(body)::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *:not(html):not(body)::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 9999px;
+  }
+
+  *:not(html):not(body):hover::-webkit-scrollbar-thumb,
+  *:not(html):not(body):focus-within::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+  }
+
+  *:not(html):not(body):hover::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-active);
+  }
+}
+
+/* Overflow-safe tables and file inputs across 320px-1440px viewports */
+.table-wrap {
+  position: relative;
+  overflow-x: auto;
+  max-width: 100%;
+  min-width: 0;
+}
+
+input[type="file"] {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Industrial panel utilities */
+.cd-surface {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+}
+
+.cd-elevated {
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+}
+
+.cd-grid-bg {
+  background-image: linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  html,
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-card {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border: 1px solid #94a3b8 !important;
+    box-shadow: none !important;
+  }
+}
