@@ -31,10 +31,17 @@ import {
 } from "@/db/schema";
 import { DEMO_CONSTANTS, did, sha256Hex } from "./ids";
 
+const cachedScryptHashes = new Map<string, string>();
+
 function deterministicScryptHash(password: string, saltSeed: string): string {
+  const cacheKey = `${saltSeed}:${password}`;
+  const hit = cachedScryptHashes.get(cacheKey);
+  if (hit) return hit;
   const salt = sha256Hex(`salt:${saltSeed}`).slice(0, 32);
   const derived = scryptSync(password, salt, 64).toString("hex");
-  return `scrypt$${salt}$${derived}`;
+  const encoded = `scrypt$${salt}$${derived}`;
+  cachedScryptHashes.set(cacheKey, encoded);
+  return encoded;
 }
 
 function maskSerialSeed(serial: string): string {

@@ -213,7 +213,7 @@ export async function ingestSignedCommerceOrderWebhook(
           eventType: "order.fulfilled",
           rawPayload: params.rawBody,
         },
-        db
+        tx
       );
 
       if (claim.alreadyProcessed) {

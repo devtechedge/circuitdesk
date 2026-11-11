@@ -13,6 +13,7 @@ export function BrandMark({
   return (
     <Link
       href={href}
+      aria-label={compact ? "CircuitDesk Operations Home" : undefined}
       className={cn(
         "inline-flex items-center gap-2.5 font-semibold tracking-tight text-[var(--text-primary)] no-underline",
         className

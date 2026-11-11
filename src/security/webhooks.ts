@@ -1,5 +1,5 @@
 import { createHash, createHmac } from "node:crypto";
-import { getDb, type Database } from "@/db/client";
+import { getDb, type DbExecutor } from "@/db/client";
 import { webhookEvents } from "@/db/schema";
 import { AppError } from "@/lib/errors";
 import { constantTimeHexEquals, constantTimeStringEquals } from "./tokens";
@@ -107,9 +107,9 @@ export async function claimIdempotentWebhookEvent(
     eventType: string;
     rawPayload: string;
   },
-  dbOverride?: Database
+  executor?: DbExecutor
 ): Promise<{ alreadyProcessed: boolean }> {
-  const db = dbOverride ?? (await getDb());
+  const db = executor ?? (await getDb());
   const payloadSha256 = createHash("sha256").update(params.rawPayload, "utf8").digest("hex");
 
   const inserted = await db

@@ -90,7 +90,11 @@ export function getEnv(): AppEnv {
     throw new Error(`Invalid environment configuration: ${details}`);
   }
   const env = parsed.data;
-  if (env.NODE_ENV === "production" && !process.env.CI) {
+  const isBuildPhase = process.env.NEXT_PHASE === "phase-production-build";
+  const isHostedProduction =
+    process.env.VERCEL_ENV === "production" || process.env.REQUIRE_PROD_SECRETS === "1";
+
+  if (env.NODE_ENV === "production" && isHostedProduction && !isBuildPhase) {
     if (
       env.AUTH_SECRET === DEV_AUTH_SECRET ||
       env.ENCRYPTION_KEY === DEV_ENCRYPTION_KEY ||

@@ -1,8 +1,10 @@
 import { eq } from "drizzle-orm";
 import type { AuthenticatedSession } from "@/auth/session";
-import { createIsolatedPgliteDb, getDb, type Database } from "@/db/client";
+import { createManagedPgliteDb, getDb, type Database } from "@/db/client";
 import { memberships, tenants, users } from "@/db/schema";
 import { seedSyntheticDemo } from "@/demo/seed";
+
+let activeManaged: { db: Database; close: () => Promise<void> } | null = null;
 
 export async function getTestDatabase(): Promise<Database> {
   if (process.env.DATABASE_URL?.trim()) {
@@ -10,9 +12,20 @@ export async function getTestDatabase(): Promise<Database> {
     await seedSyntheticDemo(db);
     return db;
   }
-  const db = await createIsolatedPgliteDb();
-  await seedSyntheticDemo(db);
-  return db;
+  if (activeManaged) {
+    await activeManaged.close();
+    activeManaged = null;
+  }
+  activeManaged = await createManagedPgliteDb();
+  await seedSyntheticDemo(activeManaged.db);
+  return activeManaged.db;
+}
+
+export async function closeTestDatabase(): Promise<void> {
+  if (activeManaged) {
+    await activeManaged.close();
+    activeManaged = null;
+  }
 }
 
 export async function sessionForEmail(

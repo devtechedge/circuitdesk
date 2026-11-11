@@ -42,12 +42,23 @@ async function createPostgres(url: string): Promise<Database> {
 }
 
 export async function createIsolatedPgliteDb(): Promise<Database> {
+  const { db } = await createManagedPgliteDb();
+  return db;
+}
+
+export async function createManagedPgliteDb(): Promise<{
+  db: Database;
+  close: () => Promise<void>;
+}> {
   const { PGlite } = await import("@electric-sql/pglite");
   const { drizzle } = await import("drizzle-orm/pglite");
   const client = new PGlite();
   await client.waitReady;
   await bootstrapPglite(client);
-  return drizzle(client, { schema });
+  return {
+    db: drizzle(client, { schema }),
+    close: () => client.close(),
+  };
 }
 
 async function createPgliteWithOptionalSeed(): Promise<Database> {
