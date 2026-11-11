@@ -27,7 +27,7 @@
     "@fontsource-variable/plus-jakarta-sans": "^5.2.5",
     "clsx": "^2.1.1",
     "drizzle-orm": "0.45.4",
-    "lucide-react": "^0.560.0",
+    "lucide-react": "^0.577.0",
     "next": "16.4.5",
     "pg": "8.23.1",
     "qrcode": "^1.5.4",
