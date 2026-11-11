@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Next.js and TypeScript
+.next/
+out/
+build/
+next-env.d.ts
+*.tsbuildinfo
+
+# Local secrets and platform links
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.vercel/
+.neon
+
+# Test artifacts and local private storage
+coverage/
+playwright-report/
+test-results/
+.private-blobs/
+
+# OS files
+.DS_Store
+Thumbs.db
