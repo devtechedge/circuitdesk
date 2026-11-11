@@ -33,7 +33,6 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/**": ["./node_modules/@electric-sql/pglite/dist/**"],
   },
-  ...(process.env.VERCEL ? {} : {}),
   async headers() {
     return [
       {
