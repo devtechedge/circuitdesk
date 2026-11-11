@@ -5,6 +5,14 @@
   "license": "MIT",
   "packageManager": "pnpm@11.22.0",
   "description": "Warranty, returns and repair operations platform for electronics and hardware brands.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devtechedge/circuitdesk.git"
+  },
+  "homepage": "https://circuitdesk.vercel.app",
+  "bugs": {
+    "url": "https://github.com/devtechedge/circuitdesk/issues"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
