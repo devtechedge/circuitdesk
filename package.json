@@ -1,0 +1,62 @@
+{
+  "name": "circuitdesk",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "packageManager": "pnpm@11.22.0",
+  "description": "Warranty, returns and repair operations platform for electronics and hardware brands.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "vitest run --config vitest.config.ts",
+    "test:watch": "vitest --config vitest.config.ts",
+    "test:integration": "vitest run --config vitest.integration.config.ts",
+    "e2e": "playwright test",
+    "db:generate": "drizzle-kit generate && tsx scripts/gen-ddl.ts",
+    "db:migrate": "tsx scripts/migrate.ts",
+    "db:seed": "tsx scripts/seed.ts",
+    "db:seed:demo": "tsx scripts/seed.ts --demo",
+    "smoke:live": "tsx scripts/live-verify.ts"
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "0.5.15",
+    "@fontsource-variable/azeret-mono": "^5.2.5",
+    "@fontsource-variable/plus-jakarta-sans": "^5.2.5",
+    "clsx": "^2.1.1",
+    "drizzle-orm": "0.45.4",
+    "lucide-react": "^0.560.0",
+    "next": "16.4.5",
+    "pg": "8.23.1",
+    "qrcode": "^1.5.4",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "tailwind-merge": "^3.4.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@playwright/test": "1.65.0",
+    "@tailwindcss/postcss": "4.3.5",
+    "@types/node": "24.19.2",
+    "@types/pg": "8.23.1",
+    "@types/qrcode": "^1.5.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitest/coverage-v8": "5.1.0",
+    "dotenv": "18.0.9",
+    "drizzle-kit": "0.31.11",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.4.5",
+    "tailwindcss": "4.3.5",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3",
+    "vitest": "5.1.0"
+  },
+  "engines": {
+    "node": ">=20.9"
+  },
+  "type": "module"
+}
