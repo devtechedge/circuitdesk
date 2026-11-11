@@ -26,6 +26,14 @@ export const metadata: Metadata = {
     url: appUrl,
     siteName: "CircuitDesk",
     type: "website",
+    images: [{ url: new URL("/og-card.png", appUrl).toString(), width: 1280, height: 640, alt: "CircuitDesk operations command deck" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CircuitDesk | Warranty, Returns & Repair Operations",
+    description:
+      "Connected after-sales operations for electronics, audio, wearable, charging, and appliance brands selling 500 to 50,000 units/month.",
+    images: [new URL("/og-card.png", appUrl).toString()],
   },
 };
 
