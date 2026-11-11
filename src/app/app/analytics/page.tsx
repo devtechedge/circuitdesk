@@ -72,13 +72,13 @@ export default async function AnalyticsPage({
           badge={<StatusBadge tone="info">Rate / 1k</StatusBadge>}
         />
         <MetricTile
-          label="DOA Share &amp; Repeat Serials"
+          label="DOA Share & Repeat Serials"
           value={`${report.headline.doaSharePct}%`}
           unitNote={`${report.headline.doaCount} DOA claim(s) · ${report.headline.repeatSerialsCount} repeat serial(s)`}
           badge={<StatusBadge tone="warn">Fault Mix</StatusBadge>}
         />
         <MetricTile
-          label="SLA Compliance &amp; Turnaround"
+          label="SLA Compliance & Turnaround"
           value={`${report.headline.slaCompliancePct}%`}
           unitNote={`Avg 1st response: ${report.headline.avgFirstResponseHours ?? "-"}h · Avg resolution: ${report.headline.avgResolutionHours ?? "-"}h`}
           badge={<StatusBadge tone="ok">SLA Clock</StatusBadge>}
